@@ -75,23 +75,35 @@ defmodule MedusaBonsaifAdapter do
   """
 
   defp parse_response(res) do
-    if Regex.match?(~r/^(10|20|30[0-9])/, "#{res.status_code}") do
-      Logger.info("Bonsaif Response: #{res.status_code}")
-      {:ok, cuerpo_respuesta} = Jason.decode(res.body)
-      if Regex.match?(~r/^(10|20|30[0-9])/,List.first(cuerpo_respuesta["result"])["code"]) do
-        Logger.info("Bonsai Inner Response; #{res.body}")
-        Jason.decode(res.body)
-      else
-        Logger.error("Bonsaif Inner Error": "#{res.body}")
-      end
 
 
 
-          else
-      Logger.error("Bonsaif Response: #{res.body}")
-      {:error, res.body}
-    end
+#    if Regex.match?(~r/^(10|20|30[0-9])/, "#{res.status_code}") do
+#      Logger.info("Bonsaif Response: #{res.status_code}")
+#      {:ok, cuerpo_respuesta} = Jason.decode(res.body)
+#      if Regex.match?(~r/^(10|20|30[0-9])/,List.first(cuerpo_respuesta["result"])["code"]) do
+#        Logger.info("Bonsai Inner Response; #{res.body}")
+#        Jason.decode(res.body)
+#      else
+#        Logger.error("Bonsaif Inner Error": "#{res.body}")
+#      end
+#          else
+#      Logger.error("Bonsaif Response: #{res.body}")
+#      {:error, res.body}
+#    end
   end
+
+
+
+
+  defp check_http_status_codes(http_status_code) do
+    http_status_code
+  end
+
+  defp check_sms_codes(sms_codes) do
+    sms_codes
+  end
+
 
   defp url do
     @config[:url]
