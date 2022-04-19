@@ -1,0 +1,41 @@
+(undo-tree-save-format-version . 1)
+"8bef2cde0beb71a4e8b45d0d277d8f2a9f59352f"
+[nil nil nil nil (25182 24365 347939 69000) 0 nil]
+([nil current ((#("
+" 0 1 (fontified t)) . -3308) (3036 . 3097) (#("
+  defp check_number_requirements(server_response,number) do
+" 0 3 (fontified t) 3 7 (fontified t face font-lock-keyword-face) 7 8 (fontified t) 8 33 (fontified t face font-lock-function-name-face) 33 58 (fontified t) 58 60 (fontified t face font-lock-keyword-face) 60 61 (fontified t)) . -3036) (2812 . 2818) (#("end
+
+
+
+" 0 3 (fontified t face font-lock-keyword-face) 3 7 (fontified t)) . -2812) (undo-tree-id0 . -4) (undo-tree-id1 . -5) (undo-tree-id2 . -4) (undo-tree-id3 . -4) (undo-tree-id4 . -4) (2698 . 2804) (#("      #end
+      #else
+      #Logger.error(\"Bonsaif Response: #{res.body}\")
+      #{:error, res.body}
+
+" 0 6 (fontified t) 6 7 (fontified t face font-lock-comment-delimiter-face) 7 11 (fontified t face font-lock-comment-face) 11 17 (fontified t) 17 18 (fontified t face font-lock-comment-delimiter-face) 18 23 (fontified t face font-lock-comment-face) 23 29 (fontified t) 29 30 (fontified t face font-lock-comment-delimiter-face) 30 43 (fontified t face font-lock-comment-face) 43 44 (fontified t syntax-table (15) face font-lock-comment-face) 44 62 (fontified t face font-lock-comment-face) 62 63 (fontified t syntax-table (2) elixir-interpolation (nil #<marker at 2698 in medusa_bonsaif_adapter.ex> #<marker at 2698 in medusa_bonsaif_adapter.ex> #<marker at 2698 in medusa_bonsaif_adapter.ex> #<marker at 2698 in medusa_bonsaif_adapter.ex>) face font-lock-comment-face) 63 73 (fontified t face font-lock-comment-face) 73 74 (fontified t syntax-table (15) face font-lock-comment-face) 74 76 (fontified t face font-lock-comment-face) 76 82 (fontified t) 82 83 (fontified t syntax-table (2) elixir-interpolation (nil #<marker at 2698 in medusa_bonsaif_adapter.ex> #<marker at 2698 in medusa_bonsaif_adapter.ex> #<marker at 2698 in medusa_bonsaif_adapter.ex> #<marker at 2698 in medusa_bonsaif_adapter.ex>)) 83 84 (fontified t) 84 90 (fontified t face elixir-atom-face) 90 103 (fontified t)) . -2698) (2586 . 2599) (#("      #else
+" 0 6 (fontified t) 6 7 (fontified t face font-lock-comment-delimiter-face) 7 12 (fontified t face font-lock-comment-face)) . -2586) (2392 . 2488) (#("      #if Regex.match?(~r/^(10|20|30[0-9])/,List.first(cuerpo_respuesta[\"result\"])[\"code\"]) do
+" 0 6 (fontified t) 6 7 (fontified t face font-lock-comment-delimiter-face) 7 72 (fontified t face font-lock-comment-face) 72 73 (fontified t syntax-table (15) face font-lock-comment-face) 73 79 (fontified t face font-lock-comment-face) 79 80 (fontified t syntax-table (15) face font-lock-comment-face) 80 83 (fontified t face font-lock-comment-face) 83 84 (fontified t syntax-table (15) face font-lock-comment-face) 84 88 (fontified t face font-lock-comment-face) 88 89 (fontified t syntax-table (15) face font-lock-comment-face) 89 95 (fontified t face font-lock-comment-face)) . -2392) (2283 . 2391) (#("      check_number_requirements(res,phone_number)
+      #{:ok, cuerpo_respuesta} = Jason.decode(res.body)
+" 0 56 (fontified t) 56 57 (fontified t syntax-table (2) elixir-interpolation (nil #<marker at 2283 in medusa_bonsaif_adapter.ex> #<marker at 2283 in medusa_bonsaif_adapter.ex> #<marker at 2283 in medusa_bonsaif_adapter.ex> #<marker at 2283 in medusa_bonsaif_adapter.ex>)) 57 58 (fontified t) 58 61 (fontified t face elixir-atom-face) 61 83 (fontified t) 83 88 (fontified t face font-lock-type-face) 88 106 (fontified t)) . -2283) (2074 . 2157) (#("
+#     with {:true,Regex.match?(~r/^(10|20|30[0-9])/, \"#{res.status_code}\")} <-
+" 0 1 (fontified t) 1 7 (fontified t face font-lock-comment-delimiter-face) 7 12 (fontified t face font-lock-comment-face) 12 54 (fontified t face font-lock-comment-face) 54 55 (fontified t syntax-table (15) face font-lock-comment-face) 55 56 (fontified t syntax-table (2) elixir-interpolation (nil #<marker at 2074 in medusa_bonsaif_adapter.ex> #<marker at 2074 in medusa_bonsaif_adapter.ex> #<marker at 2074 in medusa_bonsaif_adapter.ex> #<marker at 2074 in medusa_bonsaif_adapter.ex>) face font-lock-comment-face) 56 73 (fontified t face font-lock-comment-face) 73 74 (fontified t syntax-table (15) face font-lock-comment-face) 74 80 (fontified t face font-lock-comment-face)) . -2074) (1994 . 2039) (#("  def parse_response(res,sending_number) do
+
+" 0 2 (fontified t) 2 5 (fontified t face font-lock-keyword-face) 5 6 (fontified t) 6 20 (fontified t face font-lock-function-name-face) 20 41 (fontified t) 41 43 (fontified t face font-lock-keyword-face) 43 45 (fontified t)) . -1994) (undo-tree-id5 . -45) (undo-tree-id6 . -45) (1075 . 1098) (#("         Accept: \"*/*\",
+" 0 9 (fontified t) 9 16 (fontified t face elixir-atom-face) 16 17 (fontified t) 17 18 (fontified t syntax-table (15) face font-lock-string-face) 18 21 (fontified t face font-lock-string-face) 21 22 (fontified t syntax-table (15) face font-lock-string-face) 22 24 (fontified t)) . -1075) (#("
+" 0 1 (fontified t)) . -982) (#("
+" 0 1 (fontified t)) . -965) (#("
+" 0 1 (fontified t)) . -942) (858 . 898) (#("  defp send_request(url,from_phone) do
+" 0 2 (fontified t) 2 6 (fontified t face font-lock-keyword-face) 6 7 (fontified t) 7 19 (fontified t face font-lock-function-name-face) 19 36 (fontified t) 36 38 (fontified t face font-lock-keyword-face) 38 39 (fontified t)) . -858) (542 . 581) (#("    send_request(url,params[\"phone\"])
+" 0 28 (fontified t) 28 29 (fontified t syntax-table (15) face font-lock-string-face) 29 34 (fontified t face font-lock-string-face) 34 35 (fontified t syntax-table (15) face font-lock-string-face) 35 38 (fontified t)) . -542) (473 . 489) (#("    url =url()
+" 0 4 (fontified t) 4 7 (fontified t face font-lock-variable-name-face) 7 15 (fontified t)) . -473) (388 . 417) (#("      #\"account\" => \"Miio\",
+" 0 6 (fontified t) 6 7 (fontified t face font-lock-comment-delimiter-face) 7 8 (fontified t syntax-table (15) face font-lock-comment-face) 8 15 (fontified t face font-lock-comment-face) 15 16 (fontified t syntax-table (15) face font-lock-comment-face) 16 20 (fontified t face font-lock-comment-face) 20 21 (fontified t syntax-table (15) face font-lock-comment-face) 21 25 (fontified t face font-lock-comment-face) 25 26 (fontified t syntax-table (15) face font-lock-comment-face) 26 28 (fontified t face font-lock-comment-face)) . -388) (#("
+" 0 1 (fontified t)) . -278) (228 . 262) (#("
+
+  def send_sms(phone,message) do
+
+
+
+
+" 0 4 (fontified t) 4 7 (fontified t face font-lock-keyword-face) 7 8 (fontified t) 8 16 (fontified t face font-lock-function-name-face) 16 32 (fontified t) 32 34 (fontified t face font-lock-keyword-face) 34 39 (fontified t)) . -228) (t 25182 22008 523022 197000)) nil (25182 24365 347924 522000) 0 nil])
+nil

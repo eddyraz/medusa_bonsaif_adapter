@@ -11,27 +11,20 @@ defmodule MedusaBonsaifAdapter do
     {:ok, init_arg}
   end
 
-
-
-  def send_sms(phone, sms_type ,message) do
-
-
-
-
+  def send_sms(phone, message) do
     params = %{
-
       "key" => @config[:auth_key],
       "phone" => phone,
       "message" => message,
-      "tipo_sms" => sms_type,
-      #"account" => "Miio",
+      "tipo_sms" => 1,
+      # "account" => "Miio",
       "out" => "json"
     }
 
     auth = authorization()
-    url =url()
+    url = url()
     url = url <> "/sms?" <> URI.encode_query(params)
-    send_request(url)
+    send_request(url, params["phone"])
   end
 
   @doc """
@@ -40,23 +33,20 @@ defmodule MedusaBonsaifAdapter do
   ya que la primera esa marcada como deprecated al correr mix deps.get
   y aconsejan migrar a Tesla(se creo una rama en el git con este feature)
   """
-  defp send_request(url) do
+  defp send_request(url, from_phone) do
     Logger.info("Bonsaif Request: #{url}")
 
-
     HTTPotion.get(url,
-
       headers: [
-
         "User-Agent": "Elixir",
         "Content-Type": "application/x-www-form-urlencoded",
-        #Accept: "*/*",
+        Accept: "*/*",
         authorization: "Basic " <> authorization(),
         "cache-control": "no-cache"
       ],
       timeout: 60_000
     )
-    |> parse_response
+    |> parse_response(from_phone)
   end
 
   @doc """
@@ -74,22 +64,43 @@ defmodule MedusaBonsaifAdapter do
   ))
   """
 
-  defp parse_response(res) do
+  def parse_response(res, sending_number) do
+    phone_number = sending_number
+
+    #     with {:true,Regex.match?(~r/^(10|20|30[0-9])/, "#{res.status_code}")} <-
+
     if Regex.match?(~r/^(10|20|30[0-9])/, "#{res.status_code}") do
       Logger.info("Bonsaif Response: #{res.status_code}")
-      {:ok, cuerpo_respuesta} = Jason.decode(res.body)
-      if Regex.match?(~r/^(10|20|30[0-9])/,List.first(cuerpo_respuesta["result"])["code"]) do
-        Logger.info("Bonsai Inner Response; #{res.body}")
-        Jason.decode(res.body)
-      else
-        Logger.error("Bonsaif Inner Error": "#{res.body}")
-      end
+      check_number_requirements(res, phone_number)
+      # {:ok, cuerpo_respuesta} = Jason.decode(res.body)
 
+      # if Regex.match?(~r/^(10|20|30[0-9])/,List.first(cuerpo_respuesta["result"])["code"]) do
+      #  Logger.info("Bonsai SMS Delivery Response; #{res.body}")
+      #  Jason.decode(res.body)
+      # else
+      #  Logger.error("Bonsaif SMS Delivery Error": "#{res.body}")
+      #  Jason.decode(res.body)
+      # end
+      # else
+      # Logger.error("Bonsaif Response: #{res.body}")
+      # {:error, res.body}
+    end
+  end
 
+  defp check_http_status_codes(http_response) do
+    Logger.info("Bonsaif Response: #{http_response.status_code}")
+    Jason.decode(http_response.body)
+  end
 
-          else
-      Logger.error("Bonsaif Response: #{res.body}")
-      {:error, res.body}
+  defp check_sms_codes(sms_codes) do
+    sms_codes
+  end
+
+  defp check_number_requirements(server_response, number) do
+    if number |> to_charlist |> length == 10 do
+      {:ok, cuerpo_respuesta} = Jason.decode(server_response.body)
+    else
+      Logger.error("Bonsaif SMS Delivery Error #{server_response.body}")
     end
   end
 
