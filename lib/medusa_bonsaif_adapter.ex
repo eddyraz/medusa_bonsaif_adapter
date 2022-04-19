@@ -73,9 +73,9 @@ defmodule MedusaBonsaifAdapter do
     end
   end
 
-  
   defp check_number_requirements(server_response, number) do
-    if number |> to_charlist |> length != 10 or !String.starts_with?(number, ["552","554","998","999"]) do
+    if number |> to_charlist |> length != 10 or
+         !String.starts_with?(number, @config[:regional_area_codes]) do
       Logger.error("Bonsaif SMS Delivery Error #{server_response.body}")
     else
       {:ok, cuerpo_respuesta} = Jason.decode(server_response.body)
