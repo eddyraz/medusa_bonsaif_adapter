@@ -64,43 +64,21 @@ defmodule MedusaBonsaifAdapter do
   ))
   """
 
-  def parse_response(res, sending_number) do
+  defp parse_response(res, sending_number) do
     phone_number = sending_number
-
-    #     with {:true,Regex.match?(~r/^(10|20|30[0-9])/, "#{res.status_code}")} <-
 
     if Regex.match?(~r/^(10|20|30[0-9])/, "#{res.status_code}") do
       Logger.info("Bonsaif Response: #{res.status_code}")
       check_number_requirements(res, phone_number)
-      # {:ok, cuerpo_respuesta} = Jason.decode(res.body)
-
-      # if Regex.match?(~r/^(10|20|30[0-9])/,List.first(cuerpo_respuesta["result"])["code"]) do
-      #  Logger.info("Bonsai SMS Delivery Response; #{res.body}")
-      #  Jason.decode(res.body)
-      # else
-      #  Logger.error("Bonsaif SMS Delivery Error": "#{res.body}")
-      #  Jason.decode(res.body)
-      # end
-      # else
-      # Logger.error("Bonsaif Response: #{res.body}")
-      # {:error, res.body}
     end
   end
 
-  defp check_http_status_codes(http_response) do
-    Logger.info("Bonsaif Response: #{http_response.status_code}")
-    Jason.decode(http_response.body)
-  end
-
-  defp check_sms_codes(sms_codes) do
-    sms_codes
-  end
-
+  
   defp check_number_requirements(server_response, number) do
-    if number |> to_charlist |> length == 10 do
-      {:ok, cuerpo_respuesta} = Jason.decode(server_response.body)
-    else
+    if number |> to_charlist |> length != 10 or !String.starts_with?(number, ["552","554","998","999"]) do
       Logger.error("Bonsaif SMS Delivery Error #{server_response.body}")
+    else
+      {:ok, cuerpo_respuesta} = Jason.decode(server_response.body)
     end
   end
 
