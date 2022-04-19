@@ -72,11 +72,6 @@ defmodule MedusaBonsaifAdapter do
       check_number_requirements(res, phone_number)
     end
   end
-#
-#  defp check_http_status_codes(http_response) do
-#    Logger.info("Bonsaif Response: #{http_response.status_code}")
-#    Jason.decode(http_response.body)
-#  end
 
   
   defp check_number_requirements(server_response, number) do
