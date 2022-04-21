@@ -61,32 +61,23 @@ defmodule MedusaBonsaifAdapter do
 
   (Hubo que ajustar el codigo pues en la API de BONSAIF usan el 200 siempre en plan("OK recibi el query"),
   y despues dentro del json de respuesta es que ponen el error real Ej(
-    13:43:10.692 [error] ["Bonsaif Inner Error": "{\"result\":[{ \"id\": \"315_220416_124310_BFZ2\",  \"code\": \"440\",  \"message\": \"NO ES TELEFONO MOVIL\",  \"total_secciones\": \"1\",  \"uuid\": \"0\" } ]}\n"]
-  ))
+  "{\"result\":[{ \"id\": \"315_220416_124310_BFZ2\",  \"code\": \"440\",  \"message\": \"NO ES TELEFONO MOVIL\",  \"total_secciones\": \"1\",  \"uuid\": \"0\" } ]}\n"]
+
   """
 
   defp parse_response(res, sending_number) do
-
-    #Testeo de codigo para acceder al SMS code
-
-
-
     if Regex.match?(~r/^(10|20|30[0-9])/, "#{res.status_code}") do
       Logger.info("Bonsaif Response: #{res.status_code}")
       check_number_requirements(res, sending_number)
     end
   end
 
-
   defp check_sms_status_code(server_resp) do
-     Regex.match?(~r/^(4[1|3-6][0-1])/,String.slice(server_resp.body,55..57))
+    Regex.match?(~r/^(4[1|3-6][0-1])/, String.slice(server_resp.body, 55..57))
   end
 
-
-
   defp check_number_requirements(server_response, number) do
-    check_sms_status_code(server_response)
-    if number |> to_charlist |> length != 10 or  check_sms_status_code(server_response) do
+    if number |> to_charlist |> length != 10 or check_sms_status_code(server_response) do
       Logger.error("Bonsaif SMS Delivery Error #{server_response.body}")
     else
       {:ok, cuerpo_respuesta} = Jason.decode(server_response.body)
