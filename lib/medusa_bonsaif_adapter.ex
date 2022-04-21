@@ -72,7 +72,7 @@ defmodule MedusaBonsaifAdapter do
   end
 
   defp check_sms_status_code(server_resp) do
-    Regex.match?(~r/^(4[1|3-6][0-1])/, String.slice(server_resp.body, 55..57))
+    Regex.match?(~r/^(4[1|3-6][0-1]|501)/, String.slice(server_resp.body, 55..57))
   end
 
   defp check_number_requirements(server_response, number) do
