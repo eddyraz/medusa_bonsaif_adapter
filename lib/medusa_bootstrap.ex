@@ -8,7 +8,7 @@ defmodule AppBootstrap do
     env_values = %{
       account_sid: 315,
       account_secret: "kd.4dm1n.2022",
-      auth_key: "4av04f36wkdweweu369524ew8v0we30wf",
+      auth_key: "2av04f36wkdweweu369524ew8v0we30wf",
       url: "https://api.bonsaif.com",
       blacklist_catalog:  "",
 
