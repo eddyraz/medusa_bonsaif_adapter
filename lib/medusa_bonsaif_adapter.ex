@@ -21,7 +21,6 @@ defmodule MedusaBonsaifAdapter do
       "out" => "json"
     }
 
-    IO.inspect(@config[:regional_area_codes])
     auth = authorization()
     url = url()
     url = url <> "/sms?" <> URI.encode_query(params)
@@ -59,8 +58,8 @@ defmodule MedusaBonsaifAdapter do
   Si fueran 400(Errores del cliente Ej (llamada a API mal conformada)) o 500(Errores del Servidor)
   entonces se devuelve el error
 
-  (Hubo que ajustar el codigo pues en la API de BONSAIF usan el 200 siempre en plan("OK recibi el query"),
-  y despues dentro del json de respuesta es que ponen el error real Ej(
+  (Hubo que ajustar el codigo pues en la API de BONSAIF usan el 200 siempre en plan("OK recibi el paquete"),
+  y despues dentro del json de respuesta es que ponen el codigo de estado de SMS real Ej(
   "{\"result\":[{ \"id\": \"315_220416_124310_BFZ2\",  \"code\": \"440\",  \"message\": \"NO ES TELEFONO MOVIL\",  \"total_secciones\": \"1\",  \"uuid\": \"0\" } ]}\n"]
 
   """
@@ -80,7 +79,7 @@ defmodule MedusaBonsaifAdapter do
     if number |> to_charlist |> length != 10 or check_sms_status_code(server_response) do
       Logger.error("Bonsaif SMS Delivery Error #{server_response.body}")
     else
-      {:ok, cuerpo_respuesta} = Jason.decode(server_response.body)
+      Jason.decode(server_response.body)
     end
   end
 
