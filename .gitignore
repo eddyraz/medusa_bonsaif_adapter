@@ -24,3 +24,7 @@ medusa_bonsaif_adapter-*.tar
 
 # Temporary files, for example, from tests.
 /tmp/
+
+
+~undo-tree~
+

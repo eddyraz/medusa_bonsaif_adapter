@@ -3,8 +3,6 @@ defmodule MedusaBonsaifAdapter do
   use GenServer
   @config Application.get_env(:medusa, :bonsaif)
 
-  
-  
   def start do
     GenServer.start(__MODULE__, nil)
   end
@@ -69,6 +67,9 @@ defmodule MedusaBonsaifAdapter do
 
   defp parse_response(res, sending_number) do
 
+    #Testeo de codigo para acceder al SMS code
+
+
 
     if Regex.match?(~r/^(10|20|30[0-9])/, "#{res.status_code}") do
       Logger.info("Bonsaif Response: #{res.status_code}")
@@ -76,9 +77,16 @@ defmodule MedusaBonsaifAdapter do
     end
   end
 
+
+  defp check_sms_status_code(server_resp) do
+     Regex.match?(~r/^(4[1|3-6][0-1])/,String.slice(server_resp.body,55..57))
+  end
+
+
+
   defp check_number_requirements(server_response, number) do
-    if number |> to_charlist |> length != 10 or
-         !String.starts_with?(number, @config[:regional_area_codes]) do
+    check_sms_status_code(server_response)
+    if number |> to_charlist |> length != 10 or  check_sms_status_code(server_response) do
       Logger.error("Bonsaif SMS Delivery Error #{server_response.body}")
     else
       {:ok, cuerpo_respuesta} = Jason.decode(server_response.body)
