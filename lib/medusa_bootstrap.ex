@@ -10,7 +10,7 @@ defmodule AppBootstrap do
       account_secret: "kd.4dm1n.2022",
       auth_key: "4av04f36wkdweweu369524ew8v0we30wf",
       url: "https://api.bonsaif.com",
-      blacklist_catalog:  "",
+      blacklist_catalog:  ""
 
     }
 
