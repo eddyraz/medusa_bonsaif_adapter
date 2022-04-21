@@ -23,7 +23,10 @@ defmodule MedusaBonsaifAdapter.MixProject do
   defp deps do
     [
       {:httpotion, "~> 3.1.0"},
-      {:jason, "~> 1.2"}
+      {:jason, "~> 1.2"},
+      {:json, "~> 1.4"},
+      {:poison, "~> 5.0"},
+      {:jaxon, "~> 2.0"}
     ]
   end
 end
