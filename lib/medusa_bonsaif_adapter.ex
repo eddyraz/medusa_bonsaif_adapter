@@ -28,8 +28,8 @@ defmodule MedusaBonsaifAdapter do
   end
 
   @doc """
-  En Este modulo para hacer la llamada a la APi de Twilio
-  se puede cambiar la libreria HTTPotion or Tesla
+  En Este modulo para hacer la llamada a la APi de Bonsaif
+  se puede cambiar la libreria HTTPotion a Tesla
   ya que la primera esa marcada como deprecated al correr mix deps.get
   y aconsejan migrar a Tesla(se creo una rama en el git con este feature)
   """
@@ -50,7 +50,7 @@ defmodule MedusaBonsaifAdapter do
   end
 
   @doc """
-  En este modulo se devuelve el json parseado si los codigos de estado de http son del grupo de:
+  En esta funcion se devuelve el json parseado si los codigos de estado de http son del grupo de:
   100(informativos)
   200(enviado, en cola, etc),
   ó 300(codigos de redireccion)
